@@ -1,0 +1,62 @@
+﻿@model IEnumerable<JobHorizon.Models.User>
+@{var MyMessege = ViewBag.MyMessege;}
+@{var MyReply = ViewBag.MyReply;}
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body>
+    <p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
+    <table class="table">
+        <p>
+            @Html.ActionLink("Logout", "Logout", "User")
+        </p>
+
+
+        @foreach (var item in MyMessege)
+        {
+            <tr style="background-color:cornflowerblue">
+                <td>
+                    @item.Messege1
+                </td>
+                <td>
+                    @item.CreatedAt
+                </td>
+                <td>
+                    @Html.ActionLink("Delete", "Delete", new { id = item.MessegeId })
+                </td>
+            </tr>
+        }
+        @foreach (var item2 in MyReply)
+        {
+            <tr style="background-color:palevioletred">
+                <td>
+                    @item2.Messege1
+                </td>
+                <td>
+                    @item2.CreatedAt
+                </td>
+                <td>
+                    @Html.ActionLink("Delete", "Delete", new { id = item2.MessegeId })
+                </td>
+            </tr>
+            
+        }
+
+
+    </table>
+    <form  method="post">
+        <input type="text" name="Messege1" />
+        <input type="submit" name="submit" value="SEND" />
+    </form>
+</body>
+</html>

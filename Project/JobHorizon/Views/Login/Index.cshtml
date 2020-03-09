@@ -1,0 +1,45 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body>
+    <div> 
+        Login Form
+        <div>
+            <form method="post">
+                <div class="imgcontainer">
+                    <img src="~/Images/LoginViewLogo.png" alt="Avatar" class="avatar" height="50" width="50">
+                </div>
+                <div>
+                    @TempData["Error"]
+                </div>
+                <div class="container">
+                    <br />
+                    <div>
+                        <label for="Email"><b>Username</b></label>
+                        <input type="text" placeholder="Enter your Email" name="Email" required>
+                    </div>
+                    <br />
+                    <div>
+                        <label for="Password"><b>Password</b></label>
+                        <input type="password" placeholder="Enter Password" name="Password" required>
+                    </div>
+                    <br />
+                    <div>
+                        <button type="submit">Login</button>
+                    </div>
+                    Don't Have An Account?@Html.ActionLink("Register Here", "Index", "Registration")
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
