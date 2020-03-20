@@ -25,7 +25,9 @@ namespace JobHorizon.Controllers
                 {
                     //return Content(login.ToString());
                     Session["UserId"] = login.UserId;
-                    return RedirectToAction("Index", "User");
+                    Session["UserType"] = login.Type;
+                    Session["WorkType"] = login.WorkType;
+                    return RedirectToAction("UserCheck", "User");
                 }
                 else
                 {

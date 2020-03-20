@@ -1,0 +1,91 @@
+﻿@model IEnumerable<JobHorizon.Models.JobHistory>
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="~/style/designFile.css" rel="stylesheet" type="text/css">
+    <title>Completed Tasks</title>
+    
+</head>
+<body style="background-color:aquamarine">
+    <div class="header">
+        <h1> &nbsp &nbsp &nbsp Job Horizon </h1>
+        <p class="linkTable">
+            @Html.ActionLink("Home", "UserCheck", "User")  ||  @Html.ActionLink("Create New", "Create")
+        </p>
+    </div>
+    <br/>
+    <p class="buttonBack" style="margin-left:900px;">
+        @Html.ActionLink("Download File", "Download", "JobHistory")
+        </p>
+    <br/><br />
+    <center>
+    <table class="tableDesign">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Status)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Rating)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.HistoryId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.JobId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.JobList.PostedBy)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.User.Name)
+            </th>
+            <th></th>
+        </tr>
+    
+    @foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Status)
+            </td>
+            <td>
+                @for (var i= 0; i<item.Rating; i++ )
+                {
+                       <span> &#9733 </span>
+                }
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.HistoryId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.JobId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.JobList.PostedBy)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.User.Name)
+            </td>
+            <!--
+            <td>
+                @**
+                @Html.ActionLink("Edit", "Edit", new { id=item.HistoryId }) |
+                @Html.ActionLink("Details", "Details", new { id=item.HistoryId }) |
+                @Html.ActionLink("Delete", "Delete", new { id=item.HistoryId })
+                    **@
+            </td>
+                -->
+        </tr>
+    }
+    
+    </table>
+        </center>
+</body>
+</html>

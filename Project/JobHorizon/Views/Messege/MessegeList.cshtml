@@ -1,0 +1,47 @@
+﻿@model IEnumerable<JobHorizon.Models.Messege>
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>MessegeList</title>
+</head>
+<body>
+    <div align="center">
+        <h2>People You Are Connected With</h2>
+        <p>
+            @Html.ActionLink("Home", "UserCheck", "User")
+        </p>
+        <p>
+            @Html.ActionLink("Logout", "Logout", "User")
+        </p>
+        <table class="table" border="1">
+            <tr>
+                <th>Connected People</th>
+                <th></th>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                if (item.SenderId != Int32.Parse(Session["UserId"].ToString()))
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.User.Name)
+                        </td>
+                        <td>
+                            @Html.ActionLink("Go to Inbox", "Messege", new { id = item.SenderId })
+                        </td>
+                    </tr>
+                }
+            }
+
+        </table>
+    </div>
+</body>
+</html>

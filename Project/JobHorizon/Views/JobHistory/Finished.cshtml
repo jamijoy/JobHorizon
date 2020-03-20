@@ -1,0 +1,28 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Finished</title>
+</head>
+<body>
+    <div align="center">
+        <h2>Give A Rating</h2>
+        <p>
+            @Html.ActionLink("Home", "UserCheck", "User")
+        </p>
+        @Html.ActionLink("Logout", "Logout", "User")
+        <div>
+            <form method="post">
+                <input type="number" name="Rating" placeholder="From 0 to 5 give a rating" min="0" max="5" />
+                <input type="submit" name="submit" value="Give rating" />
+            </form>
+        </div>
+    </div>
+</body>
+</html>

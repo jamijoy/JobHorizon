@@ -1,0 +1,146 @@
+﻿@model JobHorizon.Models.JobList
+@{var BidList = ViewBag.BidList;}
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="~/style/designFile.css" rel="stylesheet" type="text/css">
+    <title>Job Details</title>
+</head>
+<body>
+    <div class="header">
+        <h1> &nbsp &nbsp &nbsp Job Horizon </h1>
+        <p class="linkTable">
+            @Html.ActionLink("Home", "UserCheck", "User")  ||  @Html.ActionLink("Logout", "Logout", "User")
+        </p>
+    </div>
+    <div style="margin-left:600px;">
+        <h2>Details About this Job</h2>
+        
+        <div>
+            <dl class="dl-horizontal">
+                <dt>
+                    @Html.DisplayNameFor(model => model.Status)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Status)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.Title)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Title)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.Description)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Description)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.Budget)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Budget)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.JobType)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.JobType)
+                </dd>
+
+                <th>
+                    Posted By
+                </th>
+
+                <dd>
+                    @Html.DisplayFor(model => model.User.Name)
+                </dd>
+
+            </dl>
+        </div>
+        @if (Session["UserType"].ToString() == "Worker")
+        {
+            <p class="buttonBack"> @Html.ActionLink("Apply For this Job", "Bid", new { id = Model.JobId }) </p>
+        }
+        else
+        {
+            <p>
+                @Html.ActionLink("Edit", "Edit", new { id = Model.JobId }) |
+                @Html.ActionLink("Back to List", "Index")
+            </p>
+        }
+
+        <div>
+
+            <div>
+                @if (Session["UserType"].ToString() == "Worker")
+                {
+
+                }
+                else
+                {
+                    if (BidList != null)
+                    {
+                        <div>
+                            Aplication On this job:
+                        </div>
+                        <div>
+                            <table>
+                                <tr>
+                                    <td>
+                                        Applicants:
+                                    </td>
+                                    <td>
+                                        Description:
+                                    </td>
+                                    <td></td>
+                                </tr>
+                                @foreach (var item in BidList)
+                                {
+                                    <tr>
+                                        <td>
+                                            @item.User.Name
+                                        </td>
+                                        <td>
+                                            @item.Description
+                                        </td>
+                                        <td>
+                                            @Html.ActionLink("Approve", "Approve", new { id = item.BidId })
+                                        </td>
+                                    </tr>
+
+                                }
+                            </table>
+                        </div>
+                    }
+                    else
+                    {
+                        <p>
+                            There are no Applicants
+                        </p>
+                    }
+
+
+                }
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -19,6 +19,7 @@ namespace JobHorizon.Models
         public int BidBy { get; set; }
         public string Description { get; set; }
     
+        public virtual JobList JobList { get; set; }
         public virtual User User { get; set; }
     }
 }

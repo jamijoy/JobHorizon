@@ -1,6 +1,5 @@
 ﻿@model IEnumerable<JobHorizon.Models.User>
 @{var MyMessege = ViewBag.MyMessege;}
-@{var MyReply = ViewBag.MyReply;}
 @{
     Layout = null;
 }
@@ -13,50 +12,54 @@
     <title>Index</title>
 </head>
 <body>
-    <p>
-        @Html.ActionLink("Create New", "Create")
-    </p>
-    <table class="table">
+    <div align="center">
+        <h2>Inbox</h2>
+        <p>
+            @Html.ActionLink("Home", "UserCheck", "User")
+        </p>
         <p>
             @Html.ActionLink("Logout", "Logout", "User")
         </p>
+        <table class="table">
+            <p>
+                @Html.ActionLink("Logout", "Logout", "User")
+            </p>
 
 
-        @foreach (var item in MyMessege)
-        {
-            <tr style="background-color:cornflowerblue">
-                <td>
-                    @item.Messege1
-                </td>
-                <td>
-                    @item.CreatedAt
-                </td>
-                <td>
-                    @Html.ActionLink("Delete", "Delete", new { id = item.MessegeId })
-                </td>
-            </tr>
-        }
-        @foreach (var item2 in MyReply)
-        {
-            <tr style="background-color:palevioletred">
-                <td>
-                    @item2.Messege1
-                </td>
-                <td>
-                    @item2.CreatedAt
-                </td>
-                <td>
-                    @Html.ActionLink("Delete", "Delete", new { id = item2.MessegeId })
-                </td>
-            </tr>
-            
-        }
+            @foreach (var item in MyMessege)
+            {
+                if (item.SenderId == Int32.Parse(Session["UserId"].ToString()))
+                {
+                    <tr style="background-color:cornflowerblue">
+                        <td>
+                            @item.Messege1
+                        </td>
+                        <td>
+                            @item.CreatedAt
+                        </td>
+                    </tr>
+                }
+                else
+                {
+                    <tr style="background-color:palevioletred">
+                        <td>
+                            @item.Messege1
+                        </td>
+                        <td>
+                            @item.CreatedAt
+                        </td>
+                    </tr>
+                }
+
+            }
 
 
-    </table>
-    <form  method="post">
-        <input type="text" name="Messege1" />
-        <input type="submit" name="submit" value="SEND" />
-    </form>
+
+        </table>
+        <form method="post">
+            <input type="text" name="Messege1" />
+            <input type="submit" name="submit" value="SEND" />
+        </form>
+    </div>
 </body>
 </html>

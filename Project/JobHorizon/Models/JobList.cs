@@ -17,6 +17,7 @@ namespace JobHorizon.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public JobList()
         {
+            this.BidLists = new HashSet<BidList>();
             this.JobHistories = new HashSet<JobHistory>();
         }
     
@@ -28,6 +29,8 @@ namespace JobHorizon.Models
         public double Budget { get; set; }
         public string JobType { get; set; }
     
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<BidList> BidLists { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<JobHistory> JobHistories { get; set; }
         public virtual User User { get; set; }

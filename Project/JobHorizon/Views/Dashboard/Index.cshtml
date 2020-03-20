@@ -1,0 +1,57 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="~/style/designFile.css" rel="stylesheet" type="text/css">
+    <title>Admin Dashboard Page - Job Horizon</title>
+</head>
+<body>
+    <div class="header">
+        <h1> &nbsp &nbsp &nbsp Job Horizon - Admin Panel </h1>
+        <p class="linkTable">
+            @Html.ActionLink("Home", "UserCheck", "User")
+            ||
+            @Html.ActionLink("Logout", "Logout", "User")
+        </p>
+    </div>
+       
+        <div style="margin-top:50px; text-align:center;">
+            <center>
+                <table>
+                    <tr>
+                        <td>
+                            @Html.ActionLink("Users", "Index", "User")<br />
+                        </td>
+                        <td>
+                            @Html.ActionLink("Active Job Posts", "Index", "JobList")<br />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            @Html.ActionLink("Running/Finished Job Posts", "index", "JobHistory")<br />
+                        </td>
+                        <td>
+                            @Html.ActionLink("View Forum", "Forum", "User")<br />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            @Html.ActionLink("Messeges", "MessegeList", "Messege")<br />
+                        </td>
+                        <td>
+                            @Html.ActionLink("Statistics", "Statistics", "Dashboard")<br />
+                        </td>
+                    </tr>
+                </table>
+            </center>
+            </div>
+     
+</body>
+</html>

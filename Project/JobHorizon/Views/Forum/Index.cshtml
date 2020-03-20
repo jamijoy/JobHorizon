@@ -1,0 +1,77 @@
+﻿@model IEnumerable<JobHorizon.Models.Forum>
+@{var CommentList = ViewBag.Comment;}
+
+    @{
+        Layout = null;
+    }
+
+    <!DOCTYPE html>
+
+    <html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="~/style/designFile.css" rel="stylesheet" type="text/css">
+        <title>Forum - Job Horizon</title>
+    </head>
+    <body>
+        <div class="header">
+            <h1> &nbsp &nbsp &nbsp Job Horizon - Forum </h1>
+            <p class="linkTable">
+                &nbsp &nbsp
+                @Html.ActionLink("About Job Horizon", "Index", "Home") || @Html.ActionLink("Home", "UserCheck", "User") || @Html.ActionLink("Logout", "Logout", "User")
+            </p>
+        </div>
+        <div>
+
+            <form method="POST">
+                <label>Title :</label><input type="text" name="Title" style="margin-bottom: 2px"><br>
+                <textarea type="text" rows="8" cols="30" name="Description"></textarea><br>
+                <input type="submit" value="POST">
+            </form>
+
+            <div class="formDiv">
+                @foreach (var item in Model)
+            {
+                    <div style="background-color:#d3e6d8">
+                        <h3>@item.Title </h3>
+                        <em>Posted By <label>@item.CreatedBy</label></em>
+                        <article>
+                            <p>
+                                @item.Description;
+                            </p>
+                        </article>
+                        @foreach (var itemNew in CommentList)
+                        {
+                            if (item.ForumId == itemNew.ForumId)
+                            {
+                                <div style="background-color:#ffffff;border-style: inset;">
+                                    Commented By<h5>@itemNew.UserId at <h6>@itemNew.CreatedAt</h6></h5>
+                                    <p>
+                                        @itemNew.Comment1;
+                                    </p>
+                                </div><br>
+
+                            }
+                        }
+                        <form action="Forum/Comment/@(item.ForumId)" method="POST">
+                            <input type="text" name="comment1">
+
+                            <button type="submit">Comment</button>
+                        </form>
+
+
+
+                        @Html.ActionLink("Delete", "Delete", new { id = item.ForumId })
+
+                    </div>
+
+                }
+
+
+
+                </table>
+            </div>
+        </div>
+    </body>
+</html>

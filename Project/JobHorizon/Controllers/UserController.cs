@@ -14,9 +14,21 @@ namespace JobHorizon.Controllers
     {
         IRepository<User> userRepo = new UserRepository();
 
+        public ActionResult UserCheck()
+        {
+            if (Session["UserType"].ToString() == "Admin")
+            {
+                return RedirectToAction("Index", "DashBoard");
+            }
+            else
+            {
+                return RedirectToAction("Index", "JobList");
+            }
+
+        }
         public ActionResult Index()
         {
-            return View(userRepo.GetAll());
+                return View(userRepo.GetAll());
         }
         [HttpGet]
         public ActionResult Details(int id)
@@ -93,6 +105,17 @@ namespace JobHorizon.Controllers
             Session["ContactId"] = id;
             //return Content(id.ToString());
             return RedirectToAction("Index","Messege");
+        }
+        public ActionResult GetConnectedPeople(int id)
+        {
+            Session["ContactId"] = id;
+            //return Content(id.ToString());
+            return RedirectToAction("Index", "Messege");
+        }
+        [HttpGet]
+        public ActionResult Forum()
+        {
+            return RedirectToAction("Index", "Forum");
         }
     }
 }

@@ -87,6 +87,18 @@
     <Property Name="Rating" Type="float" />
     <Property Name="WorkType" Type="nvarchar" MaxLength="50" />
   </EntityType>
+  <Association Name="FK_BidList_JobList">
+    <End Role="JobList" Type="Self.JobList" Multiplicity="1" />
+    <End Role="BidList" Type="Self.BidList" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="JobList">
+        <PropertyRef Name="JobId" />
+      </Principal>
+      <Dependent Role="BidList">
+        <PropertyRef Name="JobId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_BidList_User">
     <End Role="User" Type="Self.User" Multiplicity="1" />
     <End Role="BidList" Type="Self.BidList" Multiplicity="*" />
@@ -216,6 +228,10 @@
     <EntitySet Name="JobList" EntityType="Self.JobList" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Messege" EntityType="Self.Messege" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_BidList_JobList" Association="Self.FK_BidList_JobList">
+      <End Role="JobList" EntitySet="JobList" />
+      <End Role="BidList" EntitySet="BidList" />
+    </AssociationSet>
     <AssociationSet Name="FK_BidList_User" Association="Self.FK_BidList_User">
       <End Role="User" EntitySet="User" />
       <End Role="BidList" EntitySet="BidList" />

@@ -1,0 +1,88 @@
+﻿@model JobHorizon.Models.JobList
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="~/style/designFile.css" rel="stylesheet" type="text/css">
+    <title>Post A New Job</title>
+</head>
+<body>
+    <div class="header">
+        <h1> &nbsp &nbsp &nbsp Job Horizon - Job List </h1>
+        <p class="linkTable">
+            @Html.ActionLink("Home", "UserCheck", "User")  || @Html.ActionLink("Logout", "Logout", "User")
+        </p>
+    </div>
+    <div style="margin-left:400px;">
+        <h2>Create A New Job Post</h2>
+       
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="form-horizontal">
+                <h4>JobList</h4>
+                <hr />
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Title, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.Title, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Title, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Budget, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.Budget, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Budget, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.JobType, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        <select name="JobType">
+                            <option value="IT">IT</option>
+                            <option value="Marketing">Marketing</option>
+                            <option value="Development">Development</option>
+                            <option value="Admin Support">Admin Support</option>
+                            <option value="Creative">Creative</option>
+                        </select>
+                        @Html.ValidationMessageFor(model => model.JobType, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <br/>
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" value="Post New Job" class="btn btn-default" />
+                    </div>
+                </div>
+            </div>
+        }
+
+        <div>
+            <p class="buttonBack">
+            @Html.ActionLink("Back to List", "Index")
+                </p>
+        </div>
+    </div>
+</body>
+</html>

@@ -92,6 +92,18 @@
           <Property Name="Rating" Type="float" />
           <Property Name="WorkType" Type="nvarchar" MaxLength="50" />
         </EntityType>
+        <Association Name="FK_BidList_JobList">
+          <End Role="JobList" Type="Self.JobList" Multiplicity="1" />
+          <End Role="BidList" Type="Self.BidList" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="JobList">
+              <PropertyRef Name="JobId" />
+            </Principal>
+            <Dependent Role="BidList">
+              <PropertyRef Name="JobId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_BidList_User">
           <End Role="User" Type="Self.User" Multiplicity="1" />
           <End Role="BidList" Type="Self.BidList" Multiplicity="*" />
@@ -221,6 +233,10 @@
           <EntitySet Name="JobList" EntityType="Self.JobList" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Messege" EntityType="Self.Messege" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_BidList_JobList" Association="Self.FK_BidList_JobList">
+            <End Role="JobList" EntitySet="JobList" />
+            <End Role="BidList" EntitySet="BidList" />
+          </AssociationSet>
           <AssociationSet Name="FK_BidList_User" Association="Self.FK_BidList_User">
             <End Role="User" EntitySet="User" />
             <End Role="BidList" EntitySet="BidList" />
@@ -275,6 +291,7 @@
           <Property Name="JobId" Type="Int32" Nullable="false" />
           <Property Name="BidBy" Type="Int32" Nullable="false" />
           <Property Name="Description" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="JobList" Relationship="Self.FK_BidList_JobList" FromRole="BidList" ToRole="JobList" />
           <NavigationProperty Name="User" Relationship="Self.FK_BidList_User" FromRole="BidList" ToRole="User" />
         </EntityType>
         <EntityType Name="Comment">
@@ -334,6 +351,7 @@
           <Property Name="Description" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Budget" Type="Double" Nullable="false" />
           <Property Name="JobType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="BidLists" Relationship="Self.FK_BidList_JobList" FromRole="JobList" ToRole="BidList" />
           <NavigationProperty Name="JobHistories" Relationship="Self.FK_JobHistory_JobList" FromRole="JobList" ToRole="JobHistory" />
           <NavigationProperty Name="User" Relationship="Self.FK_JobList_User" FromRole="JobList" ToRole="User" />
         </EntityType>
@@ -374,6 +392,18 @@
           <NavigationProperty Name="Messeges" Relationship="Self.FK_Messege_User" FromRole="User" ToRole="Messege" />
           <NavigationProperty Name="Messeges1" Relationship="Self.FK_Messege_User1" FromRole="User" ToRole="Messege" />
         </EntityType>
+        <Association Name="FK_BidList_JobList">
+          <End Role="JobList" Type="Self.JobList" Multiplicity="1" />
+          <End Role="BidList" Type="Self.BidList" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="JobList">
+              <PropertyRef Name="JobId" />
+            </Principal>
+            <Dependent Role="BidList">
+              <PropertyRef Name="JobId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_BidList_User">
           <End Role="User" Type="Self.User" Multiplicity="1" />
           <End Role="BidList" Type="Self.BidList" Multiplicity="*" />
@@ -503,6 +533,10 @@
           <EntitySet Name="JobLists" EntityType="Self.JobList" />
           <EntitySet Name="Messeges" EntityType="Self.Messege" />
           <EntitySet Name="Users" EntityType="Self.User" />
+          <AssociationSet Name="FK_BidList_JobList" Association="Self.FK_BidList_JobList">
+            <End Role="JobList" EntitySet="JobLists" />
+            <End Role="BidList" EntitySet="BidLists" />
+          </AssociationSet>
           <AssociationSet Name="FK_BidList_User" Association="Self.FK_BidList_User">
             <End Role="User" EntitySet="Users" />
             <End Role="BidList" EntitySet="BidLists" />

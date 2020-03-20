@@ -10,6 +10,7 @@ namespace JobHorizon.Interface
     interface IMessegeRepository:IRepository<Messege>
     {
         IEnumerable<Messege> GetMyMessege(int SenderId, int ReceiverId);
-        IEnumerable<Messege> GetMyReply(int ReceiverId, int SenderId);
+        IEnumerable<Messege> GEtConnectedPeople(int id);
     }
+
 }

@@ -16,14 +16,19 @@ namespace JobHorizon.Repository
             context = new JobHorizonContext();
         }
 
-        public IEnumerable<Messege> GetMyMessege(int SenderId, int ReceiverId)
+        public IEnumerable<Messege> GEtConnectedPeople(int id)
         {
-            return context.Set<Messege>().Where(x => x.SenderId == SenderId && x.ReceiverId == ReceiverId).ToList();
+            return context.Set<Messege>()
+                   .Where(e => id == e.ReceiverId || id==e.SenderId)
+                   .GroupBy(e => new { e.ReceiverId, e.SenderId})
+                   .Select(g => g.FirstOrDefault())
+                   .Distinct()
+                   .ToList(); ;
         }
 
-        public IEnumerable<Messege> GetMyReply(int ReceiverId, int SenderId)
+        public IEnumerable<Messege> GetMyMessege(int SenderId, int ReceiverId)
         {
-            return context.Set<Messege>().Where(x => x.ReceiverId == ReceiverId && x.SenderId == SenderId).ToList();
+            return context.Set<Messege>().Where(x => x.SenderId == SenderId && x.ReceiverId == ReceiverId || x.SenderId == ReceiverId && x.ReceiverId == SenderId).ToList();
         }
     }
 }

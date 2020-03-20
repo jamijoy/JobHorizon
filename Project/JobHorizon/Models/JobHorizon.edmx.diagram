@@ -4,15 +4,16 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="675cc560677d43e68a3873dab66a5c78" Name="Diagram1">
-        <EntityTypeShape EntityType="JobHorizonModel.BidList" Width="1.5" PointX="3" PointY="5" IsExpanded="true" />
-        <EntityTypeShape EntityType="JobHorizonModel.Comment" Width="1.5" PointX="5.25" PointY="11.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="JobHorizonModel.File" Width="1.5" PointX="3" PointY="10.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="JobHorizonModel.Forum" Width="1.5" PointX="3" PointY="13.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="JobHorizonModel.JobHistory" Width="1.5" PointX="5.25" PointY="15" IsExpanded="true" />
-        <EntityTypeShape EntityType="JobHorizonModel.JobList" Width="1.5" PointX="3" PointY="19.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="JobHorizonModel.Messege" Width="1.5" PointX="3" PointY="23.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="JobHorizonModel.User" Width="1.5" PointX="0.75" PointY="9.75" IsExpanded="true" />
+      <Diagram DiagramId="a5362fc1f59a4c6fa2acdb939b832f0f" Name="Diagram1" ZoomLevel="64">
+        <EntityTypeShape EntityType="JobHorizonModel.BidList" Width="1.5" PointX="8.125" PointY="8.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="JobHorizonModel.Comment" Width="1.5" PointX="13" PointY="8.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="JobHorizonModel.File" Width="1.5" PointX="10.5" PointY="7.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="JobHorizonModel.Forum" Width="1.5" PointX="13" PointY="10.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="JobHorizonModel.JobHistory" Width="1.5" PointX="8.125" PointY="10.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="JobHorizonModel.JobList" Width="1.5" PointX="8.125" PointY="13.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="JobHorizonModel.Messege" Width="1.5" PointX="13" PointY="13.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="JobHorizonModel.User" Width="1.5" PointX="10.5" PointY="10" IsExpanded="true" />
+        <AssociationConnector Association="JobHorizonModel.FK_BidList_JobList" ManuallyRouted="false" />
         <AssociationConnector Association="JobHorizonModel.FK_BidList_User" ManuallyRouted="false" />
         <AssociationConnector Association="JobHorizonModel.FK_Comment_Forum" ManuallyRouted="false" />
         <AssociationConnector Association="JobHorizonModel.FK_Comment_User" ManuallyRouted="false" />

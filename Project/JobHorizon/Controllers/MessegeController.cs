@@ -21,7 +21,7 @@ namespace JobHorizon.Controllers
             try
             {
                 ViewBag.MyMessege = MessegeRepo.GetMyMessege(id, id2);
-                ViewBag.MyReply = MessegeRepo.GetMyReply(id, id2);
+                //ViewBag.MyReply = MessegeRepo.GetMyReply(id, id2);
                 return View();
             }
             catch (Exception)
@@ -39,6 +39,17 @@ namespace JobHorizon.Controllers
             MessegeRepo.Insert(m);
             //return Content(m.SenderId.ToString()+" "+ m.ReceiverId.ToString() + " " + m.CreatedAt.ToString() + " " + m.Messege1.ToString()+" "+m.MessegeId.ToString());
             return RedirectToAction("Index");
+        }
+        public ActionResult MessegeList()
+        {
+            int id = Int32.Parse(Session["UserId"].ToString());
+            return View(MessegeRepo.GEtConnectedPeople(id));
+        }
+        public ActionResult Messege(int id)
+        {
+            Session["ContactId"] = id;
+            //return Content(id.ToString());
+            return RedirectToAction("Index", "Messege");
         }
     }
 }

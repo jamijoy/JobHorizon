@@ -1,0 +1,107 @@
+﻿@model IEnumerable<JobHorizon.Models.JobList>
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="~/style/designFile.css" rel="stylesheet" type="text/css">
+    <title>Home</title>
+</head>
+<body>
+    <div class="header">
+        <h1> &nbsp &nbsp &nbsp Job Horizon - Job List </h1>
+        <p class="linkTable">
+            @Html.ActionLink("Home", "UserCheck", "User") ||
+            @if (Session["UserType"].ToString() == "Worker")
+            {
+                @Html.ActionLink("My Jobs", "Index", "JobHistory") <span> || </span>   @Html.ActionLink("Job Completed", "Completed", "JobHistory")     <span> || </span> @Html.ActionLink("Logout", "Logout", "User")
+            }
+            else
+            {
+    @Html.ActionLink("Create New", "Create")    <span> || </span>  @Html.ActionLink("Approved Jobs", "Index", "JobHistory")   <span> || </span> @Html.ActionLink("Logout", "Logout", "User")
+            }
+</p>
+    </div>
+
+    <div align="center">
+
+            <h3>@ViewBag.TableTitle</h3>
+            
+            <p>
+        <p class="buttonBack"> @Html.ActionLink("Send Messege", "MessegeList", "Messege") </p>
+        <p class="buttonBack"> @Html.ActionLink("View Forum", "Forum", "User")</p>
+    </p>
+
+            <table>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Status)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Title)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Description)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Budget)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.JobType)
+                    </th>
+                    <th>
+                        Posted By
+                    </th>
+                    <th></th>
+                </tr>
+
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Status)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Title)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Description)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Budget)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.JobType)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.User.Name)
+                        </td>
+                        @if (Session["UserType"].ToString() == "Worker")
+                        {
+                            <td>
+                                @Html.ActionLink("Details", "Details", new { id = item.JobId })
+                            </td>
+
+                        }
+                        else
+                        {
+                            <td>
+                                @Html.ActionLink("Edit", "Edit", new { id = item.JobId }) |
+                                @Html.ActionLink("Details", "Details", new { id = item.JobId }) |
+                                @Html.ActionLink("Delete", "Delete", new { id = item.JobId })
+                            </td>
+                        }
+
+                    </tr>
+                }
+
+            </table>
+    </div>
+    </body>
+</html>

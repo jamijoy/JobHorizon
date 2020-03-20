@@ -1,0 +1,14 @@
+.header{
+	margin-left:-10px;
+	margin-top:-10px;
+	background-color:azure;
+	width:100%;
+	padding:20px;
+}
+
+.linkTable{
+	margin-left:900px;
+	padding:10px;
+	border-radius:5px;
+	background-color:aqua;
+}

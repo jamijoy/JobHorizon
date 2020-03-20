@@ -1,0 +1,81 @@
+﻿@model IEnumerable<JobHorizon.Models.JobHistory>
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="~/style/designFile.css" rel="stylesheet" type="text/css">
+    <title>Job History</title>
+</head>
+<body>
+    <div class="header">
+        <h1> &nbsp &nbsp &nbsp Job Horizon - Job List </h1>
+        <p class="linkTable">
+            @Html.ActionLink("Home", "UserCheck", "User")  || @Html.ActionLink("Logout", "Logout", "User")
+        </p>
+    </div>
+    <div align="center">
+        <h2>All the Approved Jobs</h2>
+        
+        <table>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.JobList.Title)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Rating)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.JobList.Status)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.User.Name)
+                </th>
+                <th></th>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.JobList.Title)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Rating)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.JobList.Status)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.User.Name)
+                    </td>
+                    @if (Session["UserType"].ToString() == "Admin")
+                    {
+                        <td>
+                            @Html.ActionLink("Delete", "Delete", new { id = item.HistoryId })
+                        </td>
+                    }
+                    else if (Session["UserType"].ToString() == "Customer")
+                    {
+                        <td>
+                            @Html.ActionLink("Finished", "Finished", new { id = item.HistoryId })
+                        </td>
+                    }
+                    else
+                    {
+
+                    }
+
+                </tr>
+            }
+
+        </table>
+    </div>
+</body>
+</html>

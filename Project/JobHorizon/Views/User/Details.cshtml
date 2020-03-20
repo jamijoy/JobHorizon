@@ -12,103 +12,110 @@
     <title>Details</title>
 </head>
 <body>
-    <div>
-        <h4>User</h4>
-        <hr />
-        <dl class="dl-horizontal">
-            <dt>
-                @Html.DisplayNameFor(model => model.Name)
-            </dt>
-    
-            <dd>
-                @Html.DisplayFor(model => model.Name)
-            </dd>
-    
-            <dt>
-                @Html.DisplayNameFor(model => model.Email)
-            </dt>
-    
-            <dd>
-                @Html.DisplayFor(model => model.Email)
-            </dd>
-    
-            <dt>
-                @Html.DisplayNameFor(model => model.Password)
-            </dt>
-    
-            <dd>
-                @Html.DisplayFor(model => model.Password)
-            </dd>
-    
-            <dt>
-                @Html.DisplayNameFor(model => model.Type)
-            </dt>
-    
-            <dd>
-                @Html.DisplayFor(model => model.Type)
-            </dd>
-    
-            <dt>
-                @Html.DisplayNameFor(model => model.Gender)
-            </dt>
-    
-            <dd>
-                @Html.DisplayFor(model => model.Gender)
-            </dd>
-    
-            <dt>
-                @Html.DisplayNameFor(model => model.DOB)
-            </dt>
-    
-            <dd>
-                @Html.DisplayFor(model => model.DOB)
-            </dd>
-    
-            <dt>
-                @Html.DisplayNameFor(model => model.Account_Status)
-            </dt>
-    
-            <dd>
-                @Html.DisplayFor(model => model.Account_Status)
-            </dd>
-    
-            <dt>
-                @Html.DisplayNameFor(model => model.Address)
-            </dt>
-    
-            <dd>
-                @Html.DisplayFor(model => model.Address)
-            </dd>
-    
-            <dt>
-                @Html.DisplayNameFor(model => model.ProfileImage)
-            </dt>
-    
-            <dd>
-                <img src="~/Images/@Html.DisplayFor(model => model.ProfileImage)" height="142"/>
-            </dd>
-    
-            <dt>
-                @Html.DisplayNameFor(model => model.Rating)
-            </dt>
-    
-            <dd>
-                @Html.DisplayFor(model => model.Rating)
-            </dd>
-    
-            <dt>
-                @Html.DisplayNameFor(model => model.WorkType)
-            </dt>
-    
-            <dd>
-                @Html.DisplayFor(model => model.WorkType)
-            </dd>
-    
-        </dl>
+    <div align="center">
+        <h2>Profile</h2>
+        <p>
+            @Html.ActionLink("Home", "UserCheck", "User")
+        </p>
+        <p>
+            @Html.ActionLink("Logout", "Logout", "User")
+        </p>
+        <div>
+            <dl class="dl-horizontal">
+                <dt>
+                    @Html.DisplayNameFor(model => model.Name)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Name)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.Email)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Email)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.Password)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Password)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.Type)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Type)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.Gender)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Gender)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.DOB)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.DOB)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.Account_Status)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Account_Status)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.Address)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Address)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.ProfileImage)
+                </dt>
+
+                <dd>
+                    <img src="~/Images/@Html.DisplayFor(model => model.ProfileImage)" height="142" />
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.Rating)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Rating)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.WorkType)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.WorkType)
+                </dd>
+
+            </dl>
+        </div>
+        <p>
+            @Html.ActionLink("Edit", "Edit", new { id = Model.UserId }) |
+            @Html.ActionLink("Back to List", "Index")
+        </p>
     </div>
-    <p>
-        @Html.ActionLink("Edit", "Edit", new { id = Model.UserId }) |
-        @Html.ActionLink("Back to List", "Index")
-    </p>
 </body>
 </html>
